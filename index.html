@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real Football Penalty Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('field.jpg') no-repeat center center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .kick-zone {
+      position: absolute;
+      bottom: 150px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 0 10%;
+    }
+
+    .kick-button {
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+      color: white;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .kick-button:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .result {
+      margin-bottom: 60px;
+      font-size: 24px;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    .score {
+      margin-bottom: 20px;
+      font-size: 20px;
+      background: rgba(0,0,0,0.5);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="result" id="result">Choose a direction to shoot!</div>
+  <div class="score">Score: <span id="score">0</span></div>
+
+  <div class="kick-zone">
+    <button class="kick-button" onclick="shoot('left')">Left</button>
+    <button class="kick-button" onclick="shoot('center')">Center</button>
+    <button class="kick-button" onclick="shoot('right')">Right</button>
+  </div>
+
+  <script>
+    let score = 0;
+
+    function shoot(playerChoice) {
+      const options = ['left', 'center', 'right'];
+      const keeperChoice = options[Math.floor(Math.random() * options.length)];
+
+      if (playerChoice === keeperChoice) {
+        document.getElementById('result').textContent = '❌ SAVED by the Goalkeeper!';
+      } else {
+        document.getElementById('result').textContent = '✅ GOAL!';
+        score++;
+        document.getElementById('score').textContent = score;
+      }
+    }
+  </script>
+</body>
+</html> }
